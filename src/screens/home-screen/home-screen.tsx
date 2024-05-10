@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {HeroListWidget} from '@widgets/hero-list-widget';
 import {FavoriteCounter} from '@features/favorite-counter';
 import {useFavoriteStore} from '@entities/heroes';
 import {THomeScreenNavigatorType} from '@shared/types';
@@ -38,6 +39,8 @@ export function HomeScreen() {
       <TouchableOpacity onPress={resetFavorites} style={styles.reset_btn}>
         <Text style={styles.reset_btn_text}>Clear Fans</Text>
       </TouchableOpacity>
+
+      <HeroListWidget />
     </SafeAreaView>
   );
 }

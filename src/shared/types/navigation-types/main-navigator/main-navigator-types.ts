@@ -1,8 +1,9 @@
 import {StackScreenProps} from '@react-navigation/stack';
+import {IHero} from '@entities/heroes';
 
 export type TMainNavigatorParamsList = {
   'MAIN.HOME_SCREEN': undefined;
-  'MAIN.INFO_SCREEN': undefined;
+  'MAIN.INFO_SCREEN': {hero: IHero};
 };
 
 export type THomeScreenNavigatorType = StackScreenProps<
