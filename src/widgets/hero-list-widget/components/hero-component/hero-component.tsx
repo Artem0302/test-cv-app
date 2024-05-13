@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {memo} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {IHero, useFavoriteStore} from '@entities/heroes';
 import {THomeScreenNavigatorType} from '@shared/types';
@@ -14,18 +14,16 @@ interface IHeroComponent {
   hero: IHero;
 }
 
-export function HeroComponent({hero}: IHeroComponent) {
+export const HeroComponent = memo(({hero}: IHeroComponent) => {
   const navigation = useNavigation<THomeScreenNavProp>();
-  const {addFavorite, deleteFavorite} = useFavoriteStore();
-  const [liked, setLiked] = useState(false);
+  const {getFavorites, addFavorite, deleteFavorite} = useFavoriteStore();
+  const liked = () => getFavorites().some(obj => obj.name === hero.name);
 
   const onNavigateHandler = () =>
     navigation.navigate('MAIN.INFO_SCREEN', {hero});
 
   const onLikeHandler = () => {
-    liked ? deleteFavorite(hero) : addFavorite(hero);
-
-    setLiked(!liked);
+    liked() ? deleteFavorite(hero) : addFavorite(hero);
   };
 
   return (
@@ -34,7 +32,7 @@ export function HeroComponent({hero}: IHeroComponent) {
         onPress={onLikeHandler}
         hitSlop={8}
         style={styles.like_btn}>
-        {liked ? (
+        {liked() ? (
           <LikeAltSvg width={24} height={24} fill={'#FF0000'} />
         ) : (
           <LikeSvg width={24} height={24} fill={'#FF0000'} />
@@ -48,4 +46,4 @@ export function HeroComponent({hero}: IHeroComponent) {
       </View>
     </TouchableOpacity>
   );
-}
+});

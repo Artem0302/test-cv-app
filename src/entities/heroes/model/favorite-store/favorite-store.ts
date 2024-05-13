@@ -5,6 +5,7 @@ import {IHero} from '@entities/heroes';
 interface IFavoriteStore {
   favorites: IHero[];
 
+  getFavorites: () => IHero[];
   deleteFavorite: (value: IHero) => void;
   addFavorite: (value: IHero) => void;
   resetFavorites: () => void;
@@ -12,9 +13,10 @@ interface IFavoriteStore {
 
 export const useFavoriteStore = create<IFavoriteStore>()(
   devtools(
-    set => ({
+    (set, get) => ({
       favorites: [],
 
+      getFavorites: () => get().favorites,
       deleteFavorite: (value: IHero) =>
         set(state => ({
           favorites: state.favorites.filter(item => item.name !== value.name),

@@ -22,4 +22,17 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 22,
   },
+  page_wrapper: {
+    width: '100%',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
+  page_text: {
+    fontSize: 22,
+    fontWeight: '500',
+    color: '#000',
+    marginHorizontal: 14,
+  },
 });

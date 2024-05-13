@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {IHero, useHeroesStore} from '@entities/heroes';
 import {HeroComponent} from './components';
 import {styles} from './hero-list-widget.styles';
 
-export function HeroListWidget() {
+export const HeroListWidget = memo(() => {
   const {heroes} = useHeroesStore();
 
   const renderItem = ({item}: {item: IHero}) => <HeroComponent hero={item} />;
@@ -15,4 +15,4 @@ export function HeroListWidget() {
       <FlatList data={heroes} renderItem={renderItem} />
     </View>
   );
-}
+});

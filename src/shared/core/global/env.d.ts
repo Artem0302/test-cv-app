@@ -1,3 +1,3 @@
 declare module '@env' {
-  export const MAP_API_KEY: string;
+  export const API_URL: string;
 }
